@@ -1,0 +1,79 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "final_thoughts": "Property of Abys & Gemini. If found, return to the void.",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "background": "#0F0A14",
+          "foreground": "#EDE8FF",
+          "style": "powerline",
+          "template": " \udb82\udcc7 ",
+          "type": "os"
+        },
+        {
+          "background": "#1A0033",
+          "foreground": "#8BE9FD",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " {{ .UserName }}@{{ .HostName }} ",
+          "type": "session"
+        },
+        {
+          "background": "#0F0A14",
+          "foreground": "#BD93F9",
+          "options": {
+            "folder_separator_icon": "/",
+            "style": "full"
+          },
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " \ue5fe {{ .Folder }} ",
+          "type": "path"
+        },
+        {
+          "background": "#1A0033",
+          "foreground": "#C01E4E",
+          "options": {
+            "fetch_upstream_icon": true
+          },
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "background": "#1A0033",
+          "foreground": "#00FF85",
+          "style": "plain",
+          "type": "time",
+          "properties": {
+            "time_format": "03:04 PM"
+          }
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#C01E4E",
+          "style": "plain",
+          "template": "# ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "version": 4
+}

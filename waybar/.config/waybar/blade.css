@@ -1,0 +1,21 @@
+@define-color bg-0 #1A0033;
+@define-color bg-1 #29113d;
+@define-color bg-2 #3b1158;
+@define-color fg-0 #d8d1f5;
+@define-color fg-1 #bca7d4;
+@define-color fg-2 #ae7eed;
+@define-color accent-cyan #2be28c;
+@define-color soft-cyan #1cbdb5;
+@define-color info-blue #2992dd;
+@define-color warn #e69e32;
+@define-color danger #c01e4e;
+@define-color soft-purple #c79bff;
+@define-color muted #9581aa;
+
+@define-color transparent-bg rgba(19, 8, 27, 0.5);
+@define-color semi-transparent-bg rgba(19, 8, 27, 0.6);
+@define-color hover-opacity rgba(197, 153, 255, 0.6);
+@define-color inactive-opacity rgba(197, 153, 255, 0.3);
+
+@define-color bg-deep rgb(19, 8, 27);
+@define-color bg-flat #121017;

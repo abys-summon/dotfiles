@@ -1,0 +1,91 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+    "logo": {
+         "type": "kitty",
+         "source": "$(find \"$HOME/.config/fastfetch/icons\" -name \"icon*.png\" | shuf -n 1)",
+         "height": 14,
+         "padding": {
+             "right": 2,
+         }
+    },
+
+  "display": {
+    "separator": " : ",
+    "color": "light_cyan"
+  },
+  "modules": [
+    {
+      "type": "os",
+      "format": "{3}",
+      "key": "OS    ",
+      "keyColor": "red"
+    },
+    {
+      "type": "kernel",
+      "format": "{2}",
+      "key": " ├─  ",
+      "keyColor": "red"
+    },
+    {
+      "type": "packages",
+      "key": " ├─ 󰏗 ",
+      "keyColor": "red"
+    },
+    {
+      "type": "shell",
+      "key": " └─ 󰞷 ",
+      "keyColor": "red"
+    },
+    "break",
+    {
+      "type": "wm",
+      "format": "{1}",
+      "key": "WM    ",
+      "keyColor": "white"
+    },
+    {
+      "type": "terminal",
+      "format": "{1}",
+      "key": " ├─  ",
+      "keyColor": "white"
+    },
+    {
+      "type": "display",
+      "format": "{1}x{2} @ {3}Hz",
+      "key": " ├─ 󰍹 ",
+      "keyColor": "white"
+    },
+    {
+      "type": "terminalfont",
+      "format": "{2}",
+      "key": " ├─ 󰇧 ",
+      "keyColor": "white"
+    },
+    {
+      "type": "uptime",
+      "format": "{2}h {3}m",
+      "key": " └─ 󱎫 ",
+      "keyColor": "white"
+    },
+    "break",
+    {
+      "type": "cpu",
+      "format": "{1}",
+      "key": "CPU   ",
+      "keyColor": "green"
+    },
+    {
+      "type": "gpu",
+      "format": "Radeon Vega Series {4}",
+      "temp": true,
+      "key": " ├─ 󰢮 ",
+      "keyColor": "green"
+    },
+    {
+      "type": "memory",
+      "key": " └─  ",
+      "keyColor": "green"
+    },
+    "break"
+  ]
+}

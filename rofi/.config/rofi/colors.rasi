@@ -1,0 +1,14 @@
+* {
+    bg-deep:     rgba(15, 10, 18, 0.85);
+    bg-flat:     #0F0A12;
+
+    accent:      #FF004D;
+    purp-deep:   #13071E;
+    active:      #00FF85;
+
+    text-main:   #EDE8FF;
+    text-dim:    #646067;
+    placeholder: #64606766;
+    
+    cyan-neon:   #00FFFF;    
+}

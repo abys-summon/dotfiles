@@ -1,0 +1,70 @@
+@import "colors.rasi"
+
+configuration {
+    font:                   "Neomatrix Code 14";
+    show-icons:             false;
+    drun-display-format:    "{name}";
+}
+
+* {
+    background-color:       transparent;
+    margin:                 0;
+    padding:                0;
+    color:                  @text-main;
+}
+
+element-text {
+    background-color:       inherit;
+    text-color:             inherit;
+}
+
+window {
+    location:               south;
+    anchor:                 south;
+    y-offset:               -200px;
+    border-radius:          12px 12px 4px 4px;
+}
+
+mainbox {
+    background-color:       @bg-deep;
+    border-radius:          12px 12px 4px 4px;
+}
+
+inputbar {
+    children:               [prompt,entry];
+    background-color:       @bg-flat;
+    padding:                0 15px;
+}
+
+prompt {
+    font:                   "JetBrainsMonoNL NF SemiBold 30";
+    vertical-align:         0.5;
+}
+
+entry {
+    padding:                0 0 0 5px;
+    placeholder:            "search";
+    placeholder-color:      @placeholder;
+    font:                   "JetBrainsMonoNL NF SemiBold 18";
+    vertical-align:         0.5;
+}
+
+listview {
+    lines:                  8;
+    layout:                 vertical;
+    padding:                10px;
+}
+
+element {
+    padding:                10px;
+    text-color:             @text-dim;
+    background-color:       transparent;
+}
+
+element selected {
+    background-color:       @purp-deep;
+    color:                  @active;
+    border:                 1px dash;
+    border-color:           @active;
+}
+

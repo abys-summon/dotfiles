@@ -1,0 +1,179 @@
+{
+  "layer": "top",
+  "position": "top",
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/drun",
+    "custom/separator",
+    "custom/picker",
+    "custom/screenshot",
+    "custom/copyboard",
+    "custom/separator",
+    "hyprland/workspaces"
+  ],
+  "modules-center": ["clock#time"],
+  "modules-right": [
+    "custom/media",
+    // "cava",
+    "pulseaudio#speaker",
+    "custom/gpu",
+    "cpu",
+    "memory",
+    "custom/power"
+  ],
+
+  "custom/separator": {
+    "format": "<span color='#333333aa'><small>|</small></span>",
+    "tooltip": false
+  },
+
+  "custom/left-symbol": {
+    "format": "<span size='large'><big></big></span>",
+    "tooltip": false
+  },
+
+  "custom/right-symbol": {
+    "format": "<span size='large'><big></big></span>",
+    "tooltip": false
+  },
+
+  "custom/drun": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "rofi -show drun -theme launcher.rasi"
+  },
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active": "<big>󰐾</big>",
+      "default": "󰑊",
+      "empty": "<small></small>"
+    },
+    "persistent-workspaces": {
+      "*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    }
+  },
+
+  "clock#time": {
+    "interval": 1,
+    "format": "{:%I:%M:%S %p}",
+    "locale": "es_AR.UTF-8",
+    "timezones": ["America/Argentina/Buenos_Aires"],
+    "tooltip-format": "{calendar}",
+    "actions": {
+      "on-click-right": "mode"
+    },
+
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 4,
+      "weeks-pos": "right",
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#bca7d4'><b>{}</b></span>",
+        "days": "<span color='#bca7d4'><b>{}</b></span>",
+        "weeks": "<span color='#c79bff'><b>W{}</b></span>",
+        "weekdays": "<span color='#1cbdb5'><b>{}</b></span>",
+        "today": "<span color='#2be28c'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+
+  "custom/media": {
+    "format": "{icon} {text}",
+    "return-type": "json",
+    "format-icons": {
+      "playing": "󰐊",
+      "paused": "󰏤",
+      "off": "󰓛"
+    },
+    "escape": true,
+    "max-length": 30,
+    "exec": "/home/abys/.config/waybar/scripts/mediaplayer.sh",
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl stop",
+    "on-scroll-up": "playerctl previous",
+    "on-scroll-down": "playerctl next"
+  },
+
+  "cava": {
+    "autosens": 1,
+    "sensitivity": 3,
+    "framerate": 30,
+    "bars": 20,
+    "lower_cutoff_freq": 50,
+    "higher_cutoff_freq": 10000,
+    "sleep_timer": 10,
+    "hide_on_silence": true,
+    "format_silent": "quiet",
+    "method": "pulse",
+    "source": "auto",
+    "stereo": true,
+    "reverse": false,
+    "bar_delimiter": 0,
+    "monstercat": true,
+    "waves": true,
+    "noise_reduction": 0.2,
+    "input_delay": 0,
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "on-click": "playerctl play-pause",
+    "actions": { "on-click-right": "mode" },
+    "on-scroll-up": "playerctl previous",
+    "on-scroll-down": "playerctl next"
+  },
+
+  "cpu": {
+    "interval": 2,
+    "format": "<small><b>CPU</b></small> {usage}%",
+    "tooltip": true
+  },
+
+  "custom/gpu": {
+    "exec": "cat /sys/class/drm/card1/device/gpu_busy_percent",
+    "format": "<small><b>GPU</b></small> {}%",
+    "interval": 2,
+    "tooltip": true,
+    "tooltip-format": "{}% used"
+  },
+
+  "memory": {
+    "interval": 2,
+    "format": "<small><b>RAM</b></small> {}%"
+  },
+
+  "custom/screenshot": {
+    "format": "󰄄",
+    "tooltip": false,
+    "on-click": "/home/abys/.config/waybar/scripts/screenshot.sh"
+  },
+
+  "custom/picker": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "hyprpicker -a -f hex"
+  },
+
+  "custom/copyboard": {
+    "format": "󰆏",
+    "tooltip": false,
+    "on-click": "/home/abys/.config/waybar/scripts/copyboard.sh"
+  },
+
+  "custom/power": {
+    "format": "",
+    "on-click": "~/.config/rofi/scripts/powermenu.sh",
+    "tooltip": false
+  },
+
+  "pulseaudio#speaker": {
+    "tooltip": false,
+    "scroll-step": 5,
+    "format": "{icon} {volume}%",
+    "format-muted": "󰖁 mute",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    }
+  }
+}

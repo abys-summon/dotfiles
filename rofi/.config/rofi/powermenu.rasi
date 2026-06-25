@@ -1,0 +1,49 @@
+@import "colors.rasi"
+
+configuration {
+    show-icons:                 false;
+}
+
+* {
+    background-color:           transparent;
+    color:                      #eee;
+    margin:                     0;
+    padding:                    0;
+}
+
+window {
+    location:                    northeast;
+    anchor:                      northeast;
+    width:                       160px;
+    x-offset:                    -4px;
+    y-offset:                    4px;
+}
+
+mainbox {
+    border-radius:               4px;
+    children:                    [ "listview" ];
+    background-color:            @bg-deep;
+}
+
+listview {
+    columns:                     1;
+    lines:                       5;
+    layout:                      vertical;
+    padding:                     6px 0;    
+}
+
+element {
+    padding:                     8px 12px 8px;
+}
+
+element-text {
+    font:                        "FiraCode Nerd Font Propo 14";
+    text-color:                  inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+element selected {
+    background-color:            @purp-deep;
+    color:                       @active;
+}

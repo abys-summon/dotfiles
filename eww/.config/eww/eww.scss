@@ -1,0 +1,309 @@
+* {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+$background: #1d1d25;
+$foreground: #bebebe;
+$green: #00ff85;
+$purple: #7d4bc8;
+$red: #c01e4e;
+$white: #eee;
+$black: #0f0a12;
+
+$trough-col: #242225;
+
+tooltip {
+  background-color: rgba(25, 23, 29, 0.8);
+
+  label {
+    font-family: 'SF Mono';
+    font-weight: bolder;
+    font-size: 14px;
+    color: $foreground;
+  }
+}
+
+.bar {
+  padding: 4px 8px;
+
+  .sys-stats,
+  .date-time,
+  .action-container,
+  .active-window-container,
+  .workspaces-container,
+  .media-player-module {
+    background-color: $black;
+    border-radius: 999px;
+  }
+}
+
+.metric-progress {
+  padding: 8px 0;
+
+  trough,
+  trough progress {
+    min-width: 5px;
+    border-radius: 999px;
+  }
+
+  trough {
+    background-color: $trough-col;
+    min-height: 10px;
+
+    progress {
+      background-color: $green;
+    }
+  }
+}
+
+.critical progress {
+  background-color: $red;
+}
+
+.date-time,
+.active-window-container,
+.media-player-module {
+  padding: 0 10px;
+}
+
+.sys-stats {
+  padding: 0 14px 0 10px;
+}
+
+.sound-label {
+  padding: 0 8px 0 0;
+}
+
+.action-icon {
+  min-width: 34px;
+  min-height: 34px;
+}
+
+.date-time,
+.active-window-title,
+.sound-label,
+.media-player-module {
+  font-family: 'Inter';
+  font-weight: bold;
+  color: #dfdfdf;
+}
+
+.action-eventbox:hover {
+  .action-container {
+    background-color: $white;
+
+    .action-icon,
+    .sound-label {
+      color: $black;
+    }
+  }
+}
+
+.date-time-eventbox:hover .date-time {
+  background-color: $white;
+
+  .date-time-label {
+    color: $black;
+  }
+}
+
+.active-window-eventbox:hover .active-window-container {
+  background-color: $white;
+
+  .active-window-title {
+    color: $black;
+  }
+}
+
+.action-container,
+.date-time,
+.date-time-label,
+.active-window-container,
+.sound-label {
+  transition: all 200ms ease-in-out;
+}
+
+.workspaces-container {
+  padding: 0 5px;
+}
+
+.workspace-button {
+  all: unset;
+}
+
+.ws-pill {
+  border-radius: 999px;
+  min-width: 24px;
+  min-height: 24px;
+  background-color: $background;
+  font-family: 'Inter';
+  font-weight: bold;
+  color: $foreground;
+}
+
+.ws-pill.active {
+  background-color: $white;
+  color: $background;
+  min-width: 48px;
+}
+
+.ws-pill.special {
+  color: $purple;
+}
+
+.workspace-button:hover .ws-pill {
+  background-color: $white;
+  color: $background;
+}
+
+.vol-bar {
+  padding: 0 8px 0 4px;
+
+  trough,
+  trough progress {
+    min-height: 10px;
+    border-radius: 999px;
+  }
+
+  trough {
+    background-color: $trough-col;
+    min-width: 80px;
+
+    progress {
+      background-color: $purple;
+    }
+  }
+}
+
+// DAILY WIDGET
+
+.daily-box {
+  padding: 20px;
+
+  .quick-info,
+  .calendar-box,
+  .weather-box {
+    border-radius: 20px;
+    background-color: $background;
+    box-shadow: 0 0 10px $black;
+  }
+
+  .quick-info,
+  .calendar-box {
+    margin-bottom: 20px;
+  }
+  // quick info
+  .quick-info {
+    padding: 10px 20px;
+
+    .day {
+      color: $white;
+      font-size: 64px;
+      font-weight: bolder;
+      padding: 0 10px;
+    }
+
+    .date {
+      .month-year {
+        color: $red;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .time-zone {
+        color: #4d4d4d;
+      }
+    }
+
+    circular-progress {
+      background-color: $trough-col;
+      color: $green;
+
+      box {
+        font-size: 18px;
+        font-weight: bolder;
+        padding: 16px;
+
+        label {
+          margin: 8px;
+          color: $white;
+        }
+      }
+    }
+  }
+  // calendar
+  .calendar-box {
+    calendar {
+      all: unset;
+      font-family: 'Inter';
+      font-size: 18px;
+      font-weight: bolder;
+      color: $foreground;
+      padding: 4px 8px;
+      margin: 1px;
+
+      :selected {
+        color: $green;
+      }
+
+      .header {
+        color: $red;
+      }
+
+      .button {
+        all: unset;
+        color: transparent;
+        background-color: transparent;
+      }
+
+      .highlight {
+        color: $purple;
+        box-shadow: 0 -1px 0 0 $trough-col;
+      }
+
+      :indeterminate {
+        color: #4d4d4d;
+      }
+    }
+  }
+  // weather
+  .weather-box {
+    label {
+      font-weight: bold;
+    }
+
+    .today {
+      border-radius: 20px 20px 0 0;
+      background-color: $purple;
+      padding: 4px;
+
+      label {
+        font-size: 48px;
+        color: $background;
+      }
+    }
+
+    .day-box {
+      padding: 20px 0 15px 0;
+
+      label {
+        &.day {
+          font-size: 18px;
+          color: $purple;
+        }
+
+        &.temp {
+          color: #4d4d4d;
+        }
+      }
+    }
+  }
+}
+
+.test {
+  opacity: 0.1;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}

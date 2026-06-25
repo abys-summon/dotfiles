@@ -1,0 +1,357 @@
+(defpoll gpu_used :interval "2s" "scripts/get-gpu.sh")
+(defpoll cpu_temp :interval "2s" "scripts/get-cpu-temp.sh")
+(defpoll date_time :interval "1s" "scripts/get-datetime.sh")
+(defpoll date :interval "1s" :run-while daily_is_revealed "scripts/calendar.sh")
+(defpoll weather :interval "30m" :run-while daily_is_revealed "scripts/weather.sh")
+
+(deflisten spotify_title "playerctl -p spotify metadata --format '{{ title }}' --follow")
+(deflisten spotify_status "playerctl -p spotify status --follow")
+
+(deflisten volume :initial "whatever" "scripts/get-pulseaudio.sh state")
+(deflisten icon :initial "whatever" "scripts/get-pulseaudio.sh icon")
+(deflisten window "scripts/active-window.sh")
+(deflisten workspace_list "scripts/workspaces.sh")
+
+(defvar col_normal    "#bebebe")
+(defvar col_hover     "#0F0A12")
+(defvar col_shot      "#bebebe")
+(defvar col_picker    "#bebebe")
+(defvar col_copy      "#bebebe")
+(defvar col_vol       "#bebebe")
+(defvar col_power     "#bebebe")
+(defvar col_launcher  "#bebebe")
+
+(defvar daily_is_revealed false)
+(defvar music_is_playing false)
+
+(defwidget metric-stat [icon color value class tooltip]
+  (eventbox :onclick "kitty -e btop &" :cursor "pointer"
+    (box  :class "metric-container"
+          :space-evenly false
+          :tooltip tooltip
+      (image  :class "metric-icon"
+              :path "${EWW_CONFIG_DIR}/icons/${icon}"
+              :image-width 28 :image-height 28
+              :fill-svg color)
+      (progress :class "metric-progress ${class} ${value > 80 ? 'critical' : 'normal'}"
+                :value value
+                :orientation "v"
+                :flipped true)
+    )
+  )
+)
+
+(defwidget action-button [icon color_value color_name action class]
+  (eventbox :class "action-eventbox"
+            :cursor "pointer"
+            :onclick action
+            :onhover "${EWW_CMD} update ${color_name}=${col_hover}"
+            :onhoverlost "${EWW_CMD} update ${color_name}=${col_normal}"
+    (box  :class "action-container"
+      (image  :class "action-icon ${class}"
+              :path "${EWW_CONFIG_DIR}/icons/${icon}"
+              :image-width 28 :image-height 28
+              :fill-svg color_value)
+    )
+  )
+)
+
+(defwidget date-time-module []
+  (eventbox :cursor "pointer" :class "date-time-eventbox" :onhover "eww update daily_is_revealed=true" :onhoverlost "eww update daily_is_revealed=false"
+    (box  :class "date-time" :halign "center"
+      (label :class "date-time-label" :text date_time)
+    )
+  )
+)
+
+(defwidget active-window [icon title]
+  (eventbox :cursor "pointer" :class "active-window-eventbox" :visible {spotify_status == ''}
+    (box  :class "active-window-container"
+          :space-evenly false
+          :spacing 8
+
+      (image  :class "active-window-icon"
+              :path "/home/abys/.local/share/icons/Papirus/24x24/apps/${icon}.svg"
+              :image-width 24 :image-height 24)
+
+      (label  :class "active-window-title"
+              :limit-width 15
+              :text title)
+    )
+  )
+)
+
+(defwidget workspaces []
+  (box  :class "workspaces-container"
+        :space-evenly false
+        :spacing 8
+        :halgin "end"
+
+    (for ws in workspace_list
+      (eventbox :onclick `hyprctl dispatch ${ws.id == -98 ? "togglespecialworkspace magic" : "workspace ${ws.id}"}`
+              :cursor "pointer"
+              :class "workspace-button"
+        (box  :class `ws-pill ${ws.active ? "active" : ""} ${ws.id == -98 ? 'special' : ''}`
+              :halign "center"
+              :valign "center"
+          (label :text `${ws.id == -98 ? "S" : ws.id}`)
+        )
+      )
+    )
+
+  )
+)
+
+(defwidget daily []
+  (revealer :reveal {daily_is_revealed} :transition "slidedown" :duration "350ms"
+    (centerbox :orientation "v" :class "daily-box"
+      (box :orientation "h" :class "quick-info" :space-evenly false
+        (label :class "day" :text {date.day < 10 ? "0${date.day}" : date.day} :halign "start" :hexpand false)
+
+        (box :class "date" :orientation "v" :space-evenly true :hexpand true :valign "center"
+          (label :class "month-year" :text "${date.monthLarge} ${date.year}" :halign "start")
+          (label :class "time-zone" :text "(GTM${date.timeZone})" :halign "start")
+        )
+        
+        (circular-progress :start-at "75" :value { ((date.hour * 3600 + date.minute * 60 + date.second) * 100) / 86400 } :thickness 6 :clockwise true :halign "start"
+          (box :orientation "v"
+            (label :text {date.hour < 10 ? "0${date.hour}" : date.hour})
+            (label :text {date.minute < 10 ? "0${date.minute}" : date.minute})
+          )
+        )
+        
+      )
+
+      (box :class "calendar-box"
+        (calendar :class "calendar" :day {date.day}
+                  :month {date.month}
+                  :year {date.year})
+      )
+
+      (box :class "weather-box" :orientation "v" :space-evenly false
+        (box :class "today" :orientation "h" :space-evenly false :spacing 8
+          (image :image-width 72 :image-height 72 :path "${EWW_CONFIG_DIR}/icons/weather/${weather.now.code}.svg" :fill-svg "#1d1d25")
+          (label :text "${weather.now.temp} °C")
+        )
+        (box :class "forecast" :orientation "h"
+          (box :class "day-box" :orientation "v" :space-evenly false
+            (label :class "day" :text {weather.forecast[0].day})
+            (image :image-width 48 :image-height 48 :path "${EWW_CONFIG_DIR}/icons/weather/${weather.forecast[0].code}.svg" :fill-svg "#bebebe")
+            (label :class "temp" :text "${round(weather.forecast[0].min, 0)}/${round(weather.forecast[0].max, 0)}°")
+          )
+
+          (box :class "day-box" :orientation "v" :space-evenly false
+            (label :class "day" :text {weather.forecast[1].day})
+            (image :image-width 48 :image-height 48 :path "${EWW_CONFIG_DIR}/icons/weather/${weather.forecast[1].code}.svg" :fill-svg "#bebebe")
+            (label :class "temp" :text "${round(weather.forecast[1].min, 0)}/${round(weather.forecast[1].max, 0)}°")
+          )
+
+          (box :class "day-box" :orientation "v" :space-evenly false
+            (label :class "day" :text {weather.forecast[2].day})
+            (image :image-width 48 :image-height 48 :path "${EWW_CONFIG_DIR}/icons/weather/${weather.forecast[2].code}.svg" :fill-svg "#bebebe")
+            (label :class "temp" :text "${round(weather.forecast[2].min, 0)}/${round(weather.forecast[2].max, 0)}°")
+          )
+
+          (box :class "day-box" :orientation "v" :space-evenly false
+            (label :class "day" :text {weather.forecast[3].day})
+            (image :image-width 48 :image-height 48 :path "${EWW_CONFIG_DIR}/icons/weather/${weather.forecast[3].code}.svg" :fill-svg "#bebebe")
+            (label :class "temp" :text "${round(weather.forecast[3].min, 0)}/${round(weather.forecast[3].max, 0)}°")
+          )
+
+          (box :class "day-box" :orientation "v" :space-evenly false
+            (label :class "day" :text {weather.forecast[4].day})
+            (image :image-width 48 :image-height 48 :path "${EWW_CONFIG_DIR}/icons/weather/${weather.forecast[4].code}.svg" :fill-svg "#bebebe")
+            (label :class "temp" :text "${round(weather.forecast[4].min, 0)}/${round(weather.forecast[4].max, 0)}°")
+          )
+        )
+      )
+    )
+  )
+)
+
+(defwidget media-player [icon title]
+  (overlay
+    (box :class "media-player-module" :space-evenly false :spacing 8 :visible {spotify_status != ""}
+      (image  :class "icon"
+              :image-width 24
+              :image-height 24
+              :path "${EWW_CONFIG_DIR}/icons/${icon}")
+
+      (label  :class "title"
+              :text title
+              :limit-width 15)
+      
+      (centerbox :class "buttons"
+        (eventbox :class "previous-btn" :onclick "playerctl -p spotify previous" :cursor "pointer"
+          (image  :class "previous-svg"
+                  :path "${EWW_CONFIG_DIR}/icons/media-playback-previous.svg"
+                  :fill-svg "#bebebe"
+          )
+        )
+        (eventbox :class "pause" :onclick "playerctl -p spotify play-pause" :cursor "pointer"
+          (image  :class "previous-svg"
+                  :path "${EWW_CONFIG_DIR}/icons/${spotify_status == 'Playing' ? 'media-playback-pause.svg' : 'media-playback-start.svg'}"
+                  :fill-svg "#bebebe"
+          )
+        )
+        (eventbox :class "next" :onclick "playerctl -p spotify next" :cursor "pointer"
+          (image  :class "previous-svg"
+                  :path "${EWW_CONFIG_DIR}/icons/media-playback-next.svg"
+                  :fill-svg "#bebebe"
+          )
+        )
+      )
+    )
+
+    (label :text "CAVA HERE" :class "test")
+  )
+)
+
+(defwidget bar []
+  (centerbox  :class "bar"
+
+    (box  :class "modules-left" :space-evenly false :spacing 10
+      (box  :class "utils"
+            :spacing 10
+            :space-evenly false
+
+        (action-button  :icon "seafile-status-error.svg"
+                        :color_value col_launcher
+                        :color_name "col_launcher"
+                        :class "launcher-btn"
+                        :action "${EWW_CONFIG_DIR}/scripts/launcher.sh &")
+      
+        (action-button  :icon "camera-photo-symbolic.svg"
+                        :color_value col_shot
+                        :color_name "col_shot"
+                        :class "screenshot-btn"
+                        :action "${EWW_CONFIG_DIR}/scripts/screenshot.sh &")
+
+        (action-button  :icon "color-select.svg"
+                        :color_value col_picker
+                        :color_name "col_picker"
+                        :class "color-picker-btn"
+                        :action "${EWW_CONFIG_DIR}/scripts/color-picker.sh &")
+
+        (action-button  :icon "edit-copy.svg"
+                        :color_value col_copy
+                        :color_name "col_copy"
+                        :class "copyboard-btn"
+                        :action "${EWW_CONFIG_DIR}/scripts/copyboard.sh &")
+
+
+        (eventbox :class "action-eventbox"
+                  :cursor "pointer"
+                  :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle &"
+                  :onscroll "${EWW_CONFIG_DIR}/scripts/update-volume.sh {}"
+                  :onhover "${EWW_CMD} update col_vol=${col_hover}"
+                  :onhoverlost "${EWW_CMD} update col_vol=${col_normal}"
+          (box  :class "action-container" :space-evenly false :spacing 0
+            (image  :class "action-icon sound-btn"
+                    :path "${EWW_CONFIG_DIR}/icons/${icon}"
+                    :image-width 30 :image-height 30
+                    :fill-svg {col_vol})
+            (revealer :transition "slideright" :reveal {col_vol == col_hover ? true : false}
+              (progress :value {volume == "mute" ? 0 : (volume / 1.5)}
+              :valign "center"
+              :class "vol-bar")
+            )
+            (label :class "sound-label" :text {volume})
+          )
+        )
+      )
+      ; STACK HERE
+      (active-window  :icon {window.initialClass}
+                      :title {window.title})
+
+      (media-player :icon "spotify-client.svg"
+                    :title spotify_title)
+    )
+      
+    (box  :class "modules-center"
+    :spacing 8
+    :space-evenly false
+
+      (date-time-module)
+      (workspaces)
+    )
+
+    (box  :class "modules-right"
+          :space-evenly false
+          :spacing 8
+          :halign "end"
+
+      (box  :class "sys-stats"
+            :spacing 8
+
+        (metric-stat  :icon "ram-symbolic.svg"
+                      :color col_normal
+                      :value {round(EWW_RAM.used_mem_perc, 0)}
+                      :class "proc ram"
+                      :tooltip "RAM: ${round(EWW_RAM.used_mem_perc, 0)}%")
+
+        (metric-stat  :icon "cpu-symbolic.svg"
+                      :color col_normal
+                      :value {round(EWW_CPU.avg, 0)}
+                      :class "proc cpu"
+                      :tooltip "CORES:
+CPU_0: ${EWW_CPU.cores[0].usage}%
+CPU_1: ${EWW_CPU.cores[1].usage}%
+CPU_2: ${EWW_CPU.cores[2].usage}%
+CPU_3: ${EWW_CPU.cores[3].usage}%
+CPU_4: ${EWW_CPU.cores[4].usage}%
+CPU_5: ${EWW_CPU.cores[5].usage}%
+CPU_6: ${EWW_CPU.cores[6].usage}%
+CPU_7: ${EWW_CPU.cores[7].usage}%
+CPU_8: ${EWW_CPU.cores[8].usage}%
+CPU_9: ${EWW_CPU.cores[9].usage}%
+CPU_10: ${EWW_CPU.cores[10].usage}%
+CPU_11: ${EWW_CPU.cores[11].usage}%
+
+TEMP:
+AVG: +${cpu_temp}°C")
+
+        (metric-stat  :icon "video-display-symbolic.svg"
+                      :color col_normal
+                      :value gpu_used
+                      :class "proc gpu"
+                      :tooltip "GPU: ${gpu_used}%")
+
+        (metric-stat  :icon "cloud-download.svg"
+                      :color col_normal
+                      :value {EWW_NET["enp5s0"].NET_DOWN / 380000} ;; 300mbps
+                      :class "proc download"
+                      :tooltip "${round(EWW_NET["enp5s0"].NET_DOWN / 1024, 2)} KB/s")
+
+        (metric-stat  :icon "cloud-upload.svg"
+                      :color col_normal
+                      :value {EWW_NET["enp5s0"].NET_UP / 38000} ;; without fiber optics
+                      :class "proc upload"
+                      :tooltip "${round(EWW_NET["enp5s0"].NET_UP / 1024, 2)} KB/s")
+      )
+
+      (action-button  :class "power-btn"
+                      :icon "system-shutdown.svg"
+                      :color_value col_power
+                      :color_name "col_power"
+                      :action "~/.config/rofi/scripts/powermenu.sh &")
+    )
+  )
+)
+
+(defwindow eww-bar
+  :monitor 0
+  :geometry (geometry :width "100%"
+                      :anchor "top center")
+  :stacking   "fg"
+  :windowtype "dock"
+  :exclusive true
+  (bar)
+)
+
+(defwindow eww-widgets
+  :monitor 0
+  :geometry (geometry :anchor "top center")
+  :stacking "fg"
+  (daily)
+)

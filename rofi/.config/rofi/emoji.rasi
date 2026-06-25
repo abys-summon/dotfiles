@@ -1,0 +1,80 @@
+@import "colors.rasi"
+
+configuration {
+    show-icons: true;
+    display-emoji: "󰭟 ";
+}
+
+* {
+    font: "JetBrainsMonoNL Nerd Font Propo,JetBrainsMonoNL NFP 14";
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    text-color: @text-main;
+}
+
+element-text, element-icon {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+window {
+    width: 40%;
+    location: south;
+    anchor: south;
+    y-offset: -200px;
+    border-radius: 12px 12px 4px 4px;
+}
+
+mainbox {
+    background-color: @bg-deep;
+    border-radius: 12px 12px 4px 4px;
+}
+
+inputbar {
+    children: [prompt,entry];
+    background-color: @bg-flat;
+    padding: 0 15px;
+}
+
+prompt {
+    vertical-align: 0.5;
+    font: "JetBrainsMonoNL NF SemiBold 30";
+}
+
+entry {
+    padding: 0 0 0 5px;
+    placeholder: "search";
+    placeholder-color: @placeholder;
+    font: "JetBrainsMonoNL NF SemiBold 20";
+    vertical-align: 0.5;
+}
+
+#message {
+  padding: 30px;
+  background-color: @purp-deep;
+}
+
+listview {
+    columns: 10;
+    lines: 8;
+    layout: vertical;
+    padding: 10px;
+}
+
+element {
+    background-color: transparent;
+    padding: 10px 0;
+}
+
+element-icon {
+    size: 21px;
+    background-color: transparent;
+}
+
+element selected {
+    background-color: @purp-deep;
+    border: 1px dash;
+    border-color: @active;
+}
+
