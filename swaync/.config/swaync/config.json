@@ -60,40 +60,36 @@
         "buttons-grid": {
             "actions": [
                 {
-                    "label": "󰌪",
-                    "type": "toggle",
-                    "command": "bash -c '$HOME/.local/bin/powerprofile --toggle-quiet'",
-                    "update-command": "bash -c '$HOME/.local/bin/powerprofile --is-quiet'"
+                    "label": "",
+                    "command": "bash -c '$HOME/.config/swaync/scripts/pavucontrol.sh'"
                 },
                 {
-                    "label": "",
-                    "type": "toggle",
-                    "command": "bash -c '$HOME/.local/bin/caffeine'",
-                    "update-command": "bash -c '$HOME/.local/bin/caffeine --is-running'"
+                    "label": "󰈀",
+                    "command": "bash -c '$HOME/.config/swaync/scripts/nm-connection-editor.sh'"
                 },
                 {
-                    "label": "",
+                    "label": "",
                     "type": "toggle",
-                    "command": "bash -c '$HOME/.local/bin/mictoggle --silent'",
-                    "update-command": "bash -c '$HOME/.local/bin/mictoggle --is-muted'"
+                    "command": "bash -c '$HOME/.config/swaync/scripts/toggle-waybar.sh'",
+                    "update-command": "bash -c 'pgrep -x waybar > /dev/null && echo true || echo false'"
                 },
                 {
                     "label": "",
-                    "command": "hyprctl dispatch exec alacritty -- -e htop ; swaync-client -cp"
+                    "command": "bash -c '$HOME/.config/swaync/scripts/btop.sh'"
                 },
                 {
-                    "label": "󰃟",
+                    "label": "󰈈",
                     "type": "toggle",
-                    "command": "bash -c '$HOME/.local/bin/themesw'",
-                    "update-command": "bash -c '[ $($HOME/.local/bin/themesw --current) = light ] && echo true || echo false'"
+                    "command": "bash -c '$HOME/.config/swaync/scripts/toggle-temperature.sh'",
+                    "update-command": "bash -c 'pgrep -x hyprsunset > /dev/null && echo true || echo false'"
                 },
                 {
                     "label": "",
-                    "command": "hyprctl dispatch exec nwg-look ; swaync-client -cp"
+                    "command": "bash -c $HOME/.config/swaync/scripts/nwg-look.sh"
                 },
                 {
                     "label": "",
-                    "command": "swaync-client -cp ; bash -c $HOME/.config/rofi/bin/logout"
+                    "command": "swaync-client -cp ; bash -c $HOME/.config/rofi/scripts/powermenu.sh"
                 }
             ]
         }

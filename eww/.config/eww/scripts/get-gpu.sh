@@ -1,5 +1,5 @@
 #!/bin/sh
 
-gpu_used=$(cat /sys/class/drm/card1/device/gpu_busy_percent)
+gpu_used=$(cat $GPU_BUSY_PATH)
 echo "$gpu_used"
 

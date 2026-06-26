@@ -1,6 +1,7 @@
 #!/bin/sh
+. "$HOME/.config/zsh/export.zsh"
 
-RAW_JSON=$(curl -s "https://api.open-meteo.com/v1/forecast?latitude=-27.37&longitude=-55.89&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=auto&forecast_days=5")
+RAW_JSON=$(curl -s "https://api.open-meteo.com/v1/forecast?latitude=$LAT&longitude=$LON&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=auto&forecast_days=5")
 
 echo "$RAW_JSON" | jq -c '{
     now: {

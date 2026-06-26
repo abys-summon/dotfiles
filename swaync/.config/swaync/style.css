@@ -1,4 +1,4 @@
-@import "colors/colors.css";
+@import "colors/colors.dark.css";
 
 * {
 	font-family: "CaskaydiaCove Nerd Font Propo";
@@ -258,15 +258,15 @@
 
 .widget-buttons-grid {
 	border-radius: var(--border-radius);
-	padding: 5px 15px;
+	padding: 4px;
 	margin-bottom: 5px;
 	background: @background-alt;
 	box-shadow: var(--shadow);
 }
 
 .widget-buttons-grid button {
-	padding: 10px; 
-	margin: 3px;
+	padding: 8px;
+	margin: 4px;
 	min-width: 2rem;
 	background: @hover;
 	border-radius: var(--border-radius);
@@ -275,7 +275,7 @@
 
 .widget-buttons-grid button > label {
 	font-family: "JetBrainsMono NFP";
-	font-size: 16px;
+	font-size: 18px;
 	color: @text;
 }
 

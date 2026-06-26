@@ -1,3 +1,4 @@
+-- Configure according to hardware-specific (https://wiki.hypr.land/Configuring/Basics/Variables/#input)
 hl.config({
     input = {
         kb_layout  = "latam,us",
