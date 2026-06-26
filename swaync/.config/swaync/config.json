@@ -55,8 +55,6 @@
             "blacklist": [ "org.mpris.MediaPlayer2.playerctld"]
         },
 
-        /** TODO **/
-
         "buttons-grid": {
             "actions": [
                 {
@@ -85,11 +83,11 @@
                 },
                 {
                     "label": "",
-                    "command": "bash -c $HOME/.config/swaync/scripts/nwg-look.sh"
+                    "command": "bash -c '$HOME/.config/swaync/scripts/nwg-look.sh'"
                 },
                 {
                     "label": "",
-                    "command": "swaync-client -cp ; bash -c $HOME/.config/rofi/scripts/powermenu.sh"
+                    "command": "swaync-client -cp ; bash -c '$HOME/.config/rofi/scripts/powermenu.sh'"
                 }
             ]
         }
