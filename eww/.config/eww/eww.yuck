@@ -71,7 +71,7 @@
           :spacing 8
 
       (image  :class "active-window-icon"
-              :path "/home/abys/.local/share/icons/Papirus/24x24/apps/${icon}.svg"
+              :path "$HOME/.local/share/icons/Papirus/24x24/apps/${icon}.svg"
               :image-width 24 :image-height 24)
 
       (label  :class "active-window-title"
