@@ -123,7 +123,7 @@
   },
 
   "custom/gpu": {
-    "exec": "cat $GPU_BUSY_PATH",
+    "exec": "$HOME/.config/waybar/scripts/get-gpu.sh",
     "format": "<b><small>GPU</small> {}%</b>",
     "interval": 2,
     "tooltip": true,

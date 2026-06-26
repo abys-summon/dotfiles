@@ -139,7 +139,6 @@ These files contain values specific to the machine and must be adjusted manually
 | `hypr/.config/hypr/configuration/monitors.lua` | Output name, resolution, refresh rate |
 | `hypr/.config/hypr/configuration/input.lua` | Mouse device name and sensitivity |
 | `zsh/.config/zsh/export.zsh` | `LAT`, `LON`, `GPU_BUSY_PATH` |
-| `waybar/.config/waybar/config.jsonc` | GPU sysfs path in `custom/gpu` |
 | `fastfetch/.config/fastfetch/config.jsonc` | GPU display name |
 
 ### Wallpapers
