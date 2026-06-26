@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 mode="$1"
 
@@ -43,3 +43,4 @@ pactl subscribe | while read -r line; do
     ;;
   esac
 done
+

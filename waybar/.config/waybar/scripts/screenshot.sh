@@ -11,5 +11,6 @@ fi
 if grim -g "$GEOMETRY" - | tee "$FILE_PATH" | wl-copy --type image/png; then
     paplay /usr/share/sounds/freedesktop/stereo/camera-shutter.oga
 
-    notify-send "Captura Guardada" "Guardada en la carpeta de capturas" -i "$FILE_PATH"
+    notify-send "Saved screenshot" "$FILE_PATH" -i "$FILE_PATH"
 fi
+

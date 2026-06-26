@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 currentVol=$(pactl get-sink-volume @DEFAULT_SINK@ | awk -F '/' '{print $2}' | sed 's/%//')
 
@@ -12,3 +12,4 @@ case "$1" in
   pactl set-sink-volume @DEFAULT_SINK@ -5%
   ;;
 esac
+

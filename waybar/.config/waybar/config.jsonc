@@ -16,8 +16,8 @@
     "custom/media",
     // "cava",
     "pulseaudio#speaker",
-    "custom/gpu",
     "cpu",
+    "custom/gpu",
     "memory",
     "custom/power"
   ],
@@ -27,20 +27,28 @@
     "tooltip": false
   },
 
-  "custom/left-symbol": {
-    "format": "<span size='large'><big></big></span>",
-    "tooltip": false
-  },
-
-  "custom/right-symbol": {
-    "format": "<span size='large'><big></big></span>",
-    "tooltip": false
-  },
-
   "custom/drun": {
     "format": "",
     "tooltip": false,
     "on-click": "rofi -show drun -theme launcher.rasi"
+  },
+
+  "custom/picker": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "hyprpicker -a -f hex"
+  },
+
+  "custom/screenshot": {
+    "format": "󰄄",
+    "tooltip": false,
+    "on-click": "$HOME/.config/waybar/scripts/screenshot.sh"
+  },
+
+  "custom/copyboard": {
+    "format": "󰆏",
+    "tooltip": false,
+    "on-click": "$HOME/.config/waybar/scripts/copyboard.sh"
   },
 
   "hyprland/workspaces": {
@@ -54,7 +62,7 @@
       "*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
     }
   },
-
+// You need to adjust this
   "clock#time": {
     "interval": 1,
     "format": "{:%I:%M:%S %p}",
@@ -90,11 +98,47 @@
     },
     "escape": true,
     "max-length": 30,
-    "exec": "/home/abys/.config/waybar/scripts/mediaplayer.sh",
+    "exec": "$HOME/.config/waybar/scripts/mediaplayer.sh",
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl stop",
     "on-scroll-up": "playerctl previous",
     "on-scroll-down": "playerctl next"
+  },
+
+  "pulseaudio#speaker": {
+    "tooltip": false,
+    "scroll-step": 5,
+    "format": "{icon} <b>{volume}%</b>",
+    "format-muted": "󰖁 mute",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    }
+  },
+
+  "cpu": {
+    "interval": 2,
+    "format": "<b><small>CPU</small> {usage}%</b>",
+    "tooltip": true
+  },
+
+  "custom/gpu": {
+    "exec": "cat /sys/class/drm/card1/device/gpu_busy_percent", // You will most likely need to change this
+    "format": "<b><small>GPU</small> {}%</b>",
+    "interval": 2,
+    "tooltip": true,
+    "tooltip-format": "{}% used"
+  },
+
+  "memory": {
+    "interval": 2,
+    "format": "<b><small>RAM</small> {}%</b>"
+  },
+
+  "custom/power": {
+    "format": "",
+    "on-click": "$HOME/.config/rofi/scripts/powermenu.sh",
+    "tooltip": false
   },
 
   "cava": {
@@ -121,59 +165,6 @@
     "actions": { "on-click-right": "mode" },
     "on-scroll-up": "playerctl previous",
     "on-scroll-down": "playerctl next"
-  },
-
-  "cpu": {
-    "interval": 2,
-    "format": "<small><b>CPU</b></small> {usage}%",
-    "tooltip": true
-  },
-
-  "custom/gpu": {
-    "exec": "cat /sys/class/drm/card1/device/gpu_busy_percent",
-    "format": "<small><b>GPU</b></small> {}%",
-    "interval": 2,
-    "tooltip": true,
-    "tooltip-format": "{}% used"
-  },
-
-  "memory": {
-    "interval": 2,
-    "format": "<small><b>RAM</b></small> {}%"
-  },
-
-  "custom/screenshot": {
-    "format": "󰄄",
-    "tooltip": false,
-    "on-click": "/home/abys/.config/waybar/scripts/screenshot.sh"
-  },
-
-  "custom/picker": {
-    "format": "",
-    "tooltip": false,
-    "on-click": "hyprpicker -a -f hex"
-  },
-
-  "custom/copyboard": {
-    "format": "󰆏",
-    "tooltip": false,
-    "on-click": "/home/abys/.config/waybar/scripts/copyboard.sh"
-  },
-
-  "custom/power": {
-    "format": "",
-    "on-click": "~/.config/rofi/scripts/powermenu.sh",
-    "tooltip": false
-  },
-
-  "pulseaudio#speaker": {
-    "tooltip": false,
-    "scroll-step": 5,
-    "format": "{icon} {volume}%",
-    "format-muted": "󰖁 mute",
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "format-icons": {
-      "default": ["󰕿", "󰖀", "󰕾"]
-    }
   }
+
 }

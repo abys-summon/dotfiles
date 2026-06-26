@@ -8,7 +8,7 @@ fi
 source ~/.config/zsh/cachyos-config.zsh
 source ~/.config/zsh/export.zsh
 
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/abysmal-edge.omp.json)"
+# eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/abysmal-edge.omp.json)"
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 

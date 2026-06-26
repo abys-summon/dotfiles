@@ -295,21 +295,21 @@
                       :value {round(EWW_CPU.avg, 0)}
                       :class "proc cpu"
                       :tooltip "CORES:
-CPU_0: ${EWW_CPU.cores[0].usage}%
-CPU_1: ${EWW_CPU.cores[1].usage}%
-CPU_2: ${EWW_CPU.cores[2].usage}%
-CPU_3: ${EWW_CPU.cores[3].usage}%
-CPU_4: ${EWW_CPU.cores[4].usage}%
-CPU_5: ${EWW_CPU.cores[5].usage}%
-CPU_6: ${EWW_CPU.cores[6].usage}%
-CPU_7: ${EWW_CPU.cores[7].usage}%
-CPU_8: ${EWW_CPU.cores[8].usage}%
-CPU_9: ${EWW_CPU.cores[9].usage}%
-CPU_10: ${EWW_CPU.cores[10].usage}%
-CPU_11: ${EWW_CPU.cores[11].usage}%
+                      CPU_0: ${EWW_CPU.cores[0].usage}%
+                      CPU_1: ${EWW_CPU.cores[1].usage}%
+                      CPU_2: ${EWW_CPU.cores[2].usage}%
+                      CPU_3: ${EWW_CPU.cores[3].usage}%
+                      CPU_4: ${EWW_CPU.cores[4].usage}%
+                      CPU_5: ${EWW_CPU.cores[5].usage}%
+                      CPU_6: ${EWW_CPU.cores[6].usage}%
+                      CPU_7: ${EWW_CPU.cores[7].usage}%
+                      CPU_8: ${EWW_CPU.cores[8].usage}%
+                      CPU_9: ${EWW_CPU.cores[9].usage}%
+                      CPU_10: ${EWW_CPU.cores[10].usage}%
+                      CPU_11: ${EWW_CPU.cores[11].usage}%
 
-TEMP:
-AVG: +${cpu_temp}°C")
+                      TEMP:
+                      AVG: +${cpu_temp}°C")
 
         (metric-stat  :icon "video-display-symbolic.svg"
                       :color col_normal

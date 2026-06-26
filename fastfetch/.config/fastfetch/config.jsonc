@@ -76,7 +76,7 @@
     },
     {
       "type": "gpu",
-      "format": "Radeon Vega Series {4}",
+      "format": "Radeon Vega Series {4}", // You will most likely need to change this
       "temp": true,
       "key": " ├─ 󰢮 ",
       "keyColor": "green"

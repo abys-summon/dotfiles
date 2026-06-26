@@ -1,2 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
+
 LANG=C date '+%F | %I:%M %p'
+

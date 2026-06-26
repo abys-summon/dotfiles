@@ -1,3 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 rofi -show drun -theme launcher.rasi
+

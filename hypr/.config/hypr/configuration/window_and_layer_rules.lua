@@ -19,6 +19,12 @@ hl.layer_rule({
     ignore_alpha    = 0.5,
 })
 
+hl.layer_rule({
+    name            = "no-anim-for-hyprpicker",
+    match           = { namespace = "hyprpicker" },
+    no_anim         = true,
+})
+
 hl.window_rule({
     name = "opacity-for-vscodium",
     match = { class = "codium" },

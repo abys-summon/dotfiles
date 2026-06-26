@@ -1,3 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 hyprpicker -a -f hex
+

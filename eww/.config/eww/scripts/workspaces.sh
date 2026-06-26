@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 get_active() {
   hyprctl activeworkspace -j | jq -r .id
@@ -21,3 +21,4 @@ socat -U - UNIX-CONNECT:"$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.soc
     ;;
   esac
 done
+

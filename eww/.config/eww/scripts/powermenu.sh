@@ -1,5 +1,4 @@
-#!/bin/bash
-# ~/.config/rofi/scripts/powermenu.sh
+#!/bin/sh
 
 options=" Lock\n Logout\n Reboot\n Shutdown\n Suspend"
 
@@ -26,3 +25,4 @@ case "$choice" in
         systemctl suspend
         ;;
 esac
+

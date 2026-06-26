@@ -9,16 +9,8 @@
 
 window#waybar {
   all: unset;
-  /*background-image: repeating-linear-gradient(
-    -55deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(255, 255, 255, 0.02) 1px,
-    transparent 1px,
-    transparent 8px
-    );*/
   background-color: @bg-flat;
-  /*border: solid rgba(17, 17, 17, 0.8);
-border-width: 4px 0;*/
+  border-width: 4px 0;
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4);
   transition: all 400ms ease-in-out;
 }
@@ -74,7 +66,6 @@ tooltip label {
 #custom-media {
   font-family: 'Braciola MS Extrabold';
   transition: all 200ms ease-in-out;
-  background-color: @bg-0;
 }
 
 #custom-media.playing {

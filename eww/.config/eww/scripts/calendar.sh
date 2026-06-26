@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 second=$(date +%-S)
 minute=$(date +%-M)
@@ -19,3 +19,4 @@ jq -n \
   --arg monthLarge "$month_large" \
   --argjson year "$year" \
   '{second: $second, minute: $minute, hour: $hour, timeZone: $timeZone, day: $day, month: $month, monthLarge: $monthLarge, year: $year}'
+

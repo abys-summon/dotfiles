@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 SOCAT_PATH="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
 
@@ -30,3 +30,4 @@ socat -U - UNIX-CONNECT:"$SOCAT_PATH" | while read -r line; do
     get_data
   esac
 done
+

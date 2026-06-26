@@ -16,3 +16,4 @@ idle_diff=$((idle_2 - idle_1))
 cpu_usage=$(( (1000 * (total_diff - idle_diff) / total_diff + 5) / 10 ))
 
 echo "$cpu_usage"
+
