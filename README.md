@@ -6,7 +6,7 @@ My personal dotfiles for a Wayland-native desktop built around Hyprland, themed 
 
 ---
 
-![desktop](screenshots/desktop.png)
+![desktop](screenshots/desktop.gif)
 
 ---
 

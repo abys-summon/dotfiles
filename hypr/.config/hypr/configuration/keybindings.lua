@@ -13,7 +13,7 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(alias.menu))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t -sw"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + I", hl.dsp.layout("togglesplit"))    -- dwindle only
-hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("~/.config/waybar/scripts/toggle-waybar.sh"))
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("$HOME/.config/waybar/scripts/toggle-waybar.sh"))
 hl.bind(mainMod .. " + PERIOD", hl.dsp.exec_cmd("rofi -modi emoji -show emoji -emoji-format '{emoji}' -emoji-mode menu -theme emoji.rasi"))
 
 -- Move focus
