@@ -210,11 +210,11 @@ The status bar includes a buttons with utilities:
 
 | Button | Action |
 |---|---|
-|  | rofi (launcher) |
-|  | hyprpicker |
-| 󰄄 | screenshot (grim + slurp) |
-| 󰆏 | rofi (cliphist list) |
-|  | rofi (power menu) |
+| 🦋 | rofi (launcher) |
+| 🖌️ | hyprpicker |
+| 📸 | screenshot (grim + slurp) |
+| 📋 | rofi (cliphist list) |
+| 🚫 | rofi (power menu) |
 
 ---
 
@@ -224,13 +224,13 @@ The notification center includes a buttons grid with system utilities:
 
 | Button | Action |
 |---|---|
-|  | pavucontrol (audio) |
-| 󰈀 | nm-connection-editor (network) |
-|  | Toggle waybar |
-|  | btop in floating kitty (1280×720) |
-| 󰈈 | Toggle night light (hyprsunset 3500K) |
-|  | nwg-look (GTK theme) |
-|  | rofi (power menu) |
+| 🔊 | pavucontrol (audio) |
+| 🌐 | nm-connection-editor (network) |
+| ➖ | Toggle waybar |
+| 📊 | btop in floating kitty (1280×720) |
+| 👁️ | Toggle night light (hyprsunset 3500K) |
+| 🎨 | nwg-look (GTK theme) |
+| ↪️ | rofi (power menu) |
 
 ---
 

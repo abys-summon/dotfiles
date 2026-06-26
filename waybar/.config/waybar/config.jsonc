@@ -28,7 +28,7 @@
   },
 
   "custom/drun": {
-    "format": "",
+    "format": "",
     "tooltip": false,
     "on-click": "rofi -show drun -theme launcher.rasi"
   },

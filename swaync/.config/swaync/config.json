@@ -62,7 +62,7 @@
                     "command": "bash -c '$HOME/.config/swaync/scripts/pavucontrol.sh'"
                 },
                 {
-                    "label": "󰈀",
+                    "label": "",
                     "command": "bash -c '$HOME/.config/swaync/scripts/nm-connection-editor.sh'"
                 },
                 {
