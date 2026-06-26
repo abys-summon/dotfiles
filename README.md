@@ -6,7 +6,7 @@ My personal dotfiles for a Wayland-native desktop built around Hyprland, themed 
 
 ---
 
-![desktop](./screenshots/desktop.png)
+![desktop](screenshots/desktop.png)
 
 ---
 
@@ -42,7 +42,7 @@ My personal dotfiles for a Wayland-native desktop built around Hyprland, themed 
 
 | Desktop | Lockscreen |
 |---|---|
-| ![desktop](./screenshots/desktop.png) | ![lockscreen](./screenshots/lockscreen.png) |
+| ![desktop](screenshots/desktop.png) | ![lockscreen](screenshots/lockscreen.png) |
 
 ---
 
